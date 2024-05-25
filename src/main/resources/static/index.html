@@ -6,35 +6,125 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="script.js" async></script>
+    <style>
+        body {
+            background-color: salmon;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 3px solid green;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: green;
+            font-family: 'Pacifico', cursive;
+        }
+
+        p {
+            font-weight: 400;
+            color: #6c757d;
+        }
+
+        #answerPart {
+            margin-top: 30px;
+        }
+
+        #answerPart h4 {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        #answer {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            color: #495057;
+        }
+
+        #preview {
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 3px solid green;
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .form-group label {
+            color: #495057;
+            font-weight: 500;
+        }
+    </style>
 </head>
 
 <body>
-
-    <div class="container-fluid">
-        <h1>Footwear Classification</h1>
-        <p>DeepJavaLibrary (DJL) Demonstration by mosa</p>
+    <div class="container">
+        <h1 class="text-center">Image Classification</h1>
+        <p class="text-center">DeepJavaLibrary (DJL) Demonstration by mouraisa</p>
 
         <form>
             <div class="form-group">
-                <label for="exampleFormControlFile1">Bitte Bild hochladen (jpeg, png)</label>
+                <label for="image">Bitte Bild hochladen (jpeg, png)</label>
                 <input type="file" accept="image/png, image/jpeg" class="form-control-file" id="image" name="image"
                     onchange="checkFiles(this.files);">
             </div>
         </form>
 
         <div id="answerPart" style="visibility: hidden;">
-            <p><b>Answer:</b>
+            <h4>Result</h4>
+            <p><b>Answer:</b></p>
             <div id="answer"></div>
-            </p>
 
-            <p id="previewPart"><b>Analyzed Image:</b>
-            <p><img id="preview" width="300" src="#" alt="preview" /></p>
-            </p>
+            <div id="previewPart">
+                <p><b>Analyzed Image:</b></p>
+                <img id="preview" src="#" alt="preview" />
+            </div>
         </div>
     </div>
 
+    <script>
+        function checkFiles(files) {
+            if (files.length > 0) {
+                // Make the answerPart visible
+                document.getElementById('answerPart').style.visibility = 'visible';
 
+                // Update the preview image
+                var preview = document.getElementById('preview');
+                preview.src = URL.createObjectURL(files[0]);
+                preview.onload = function () {
+                    URL.revokeObjectURL(preview.src); // Free memory
+                };
+
+                // Set the answer text (replace with actual result)
+                document.getElementById('answer').innerText = 'This is a placeholder answer.';
+            }
+        }
+    </script>
 </body>
 
 </html>
